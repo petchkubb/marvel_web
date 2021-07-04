@@ -2,8 +2,11 @@ import React from 'react'
 
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 
+import Home from 'pages/Home'
+
+import Header from 'components/Header'
+
 import './App.css'
-import Header from './components/Header'
 
 const theme = createMuiTheme({
 	typography: {
@@ -18,6 +21,7 @@ function App() {
 		<ThemeProvider theme={theme}>
 			<div className="App">
 				<Header />
+				<Home />
 			</div>
 		</ThemeProvider>
 	)
