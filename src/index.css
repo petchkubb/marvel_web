@@ -15,24 +15,24 @@ code {
 @font-face {
   font-family: 'SFArchRivalRegular';
   src: local('SFArchRivalRegular'),
-      url('./fonts/SFArchRival/SFArch-Rival.ttf') format('truetype');
+      url('./fonts/SFArch-Rival.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'SFArchRivalItalic';
   src: local('SFArchRivalItalic'),
-      url('./fonts/SFArchRival/SFArch-Rival-Italic.ttf') format('truetype');
+      url('./fonts/SFArch-Rival-Italic.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'SFArchRivalBoldItalic';
   src: local('SFArchRivalBoldItalic'),
-      url('./fonts/SFArchRival/SFArch-Rival-Bold-Italic.ttf') format('truetype');
+      url('./fonts/SFArch-Rival-Bold-Italic.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'SFArchRivalBold';
   src: local('SFArchRivalBold'),
-      url('./fonts/SFArchRival/SFArch-Rival-Bold.ttf') format('truetype');
+      url('./fonts/SFArch-Rival-Bold.ttf') format('truetype');
 }
 
