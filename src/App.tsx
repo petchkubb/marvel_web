@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 import Home from 'pages/Home'
 
@@ -17,13 +18,16 @@ const theme = createMuiTheme({
 })
 
 function App() {
+	const queryClient = new QueryClient()
 	return (
-		<ThemeProvider theme={theme}>
-			<div className="App">
-				<Header />
-				<Home />
-			</div>
-		</ThemeProvider>
+		<QueryClientProvider client={queryClient}>
+			<ThemeProvider theme={theme}>
+				<div className="App">
+					<Header />
+					<Home />
+				</div>
+			</ThemeProvider>
+		</QueryClientProvider>
 	)
 }
 
