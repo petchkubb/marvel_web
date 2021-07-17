@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
+import { Grid } from '@material-ui/core'
 import api from 'Api'
-import InfiniteScroll from 'react-infinite-scroller'
 import { useInfiniteQuery } from 'react-query'
 
 const Home = () => {
@@ -10,35 +10,56 @@ const Home = () => {
 		data,
 		hasNextPage,
 		fetchNextPage,
+		isFetching,
+		isFetchingNextPage
 	} = useInfiniteQuery('characters', async ({ pageParam = 0 }) => {
 		const res = await api('GET', '/characters', { limit: 100, offset: pageParam })
 		return res
 	}, {
-		getNextPageParam: lastPage => lastPage?.data?.data?.offset + 100
+		getNextPageParam: lastPage => lastPage?.data?.data?.offset === 1500 ? undefined : lastPage?.data?.data?.offset + 100
 	})
 
-	const loadMore = () => fetchNextPage()
+	useEffect(() => {
+		window.addEventListener('scroll', handleScroll)
+		return () => window.removeEventListener('scroll', handleScroll)
+	}, [])
 
+	function handleScroll() {
+		if(window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
+			fetchNextPage()
+		}
+	}
+
+	if(status === 'loading') {
+		(
+			<p>Loading...</p>
+		)
+	}
+	if(status === 'error') {
+		(
+			<p>Error!</p>
+		)
+	}
 	return (
-		<div>
+		<Grid
+			container
+			spacing={3}
+			style={{
+				margin: 0,
+				width: '100%',
+			}}
+		>
 			{data?.pages?.map((page, index) => (
-				<InfiniteScroll
-					key={index}
-					loadMore={loadMore}
-					hasMore={hasNextPage}
-					loader={<h4 key={0}>Loading...</h4>}
-				>
-					{
-						page.data?.data?.results.map((item: any) => (
-							<div key={item?.id}>
-								<div>{item?.name}</div>
-								<img width="100px" height="100px" src={`${item?.thumbnail?.path}.${item?.thumbnail?.extension}`} alt="" />
-							</div>
-						))
-					}
-				</InfiniteScroll>
+				page.data?.data?.results.map((item: any) => (
+					<Grid key={item?.id} item xs={3}>
+						<div>{item?.name}</div>
+						<img width="100px" height="100px" src={`${item?.thumbnail?.path}.${item?.thumbnail?.extension}`} alt="" />
+					</Grid>
+				))
 			))}
-		</div>
+			<div>{isFetching && !isFetchingNextPage ? 'Fetching...' : null}</div>
+		</Grid>
+
 	)
 }
 
