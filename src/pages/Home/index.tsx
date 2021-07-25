@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react'
 
 import { Grid } from '@material-ui/core'
+import Paper from '@material-ui/core/Paper'
 import api from 'Api'
 import { useInfiniteQuery } from 'react-query'
+
+import useStyles from 'pages/Home/styled'
 
 const Home = () => {
 	const {
@@ -18,6 +21,8 @@ const Home = () => {
 	}, {
 		getNextPageParam: lastPage => lastPage?.data?.data?.offset === 1500 ? undefined : lastPage?.data?.data?.offset + 100
 	})
+
+	const classes = useStyles()
 
 	useEffect(() => {
 		window.addEventListener('scroll', handleScroll)
@@ -51,9 +56,20 @@ const Home = () => {
 		>
 			{data?.pages?.map((page, index) => (
 				page.data?.data?.results.map((item: any) => (
-					<Grid key={item?.id} item xs={3}>
-						<div>{item?.name}</div>
-						<img width="100px" height="100px" src={`${item?.thumbnail?.path}.${item?.thumbnail?.extension}`} alt="" />
+					<Grid
+						key={item?.id}
+						item
+						xs={3}
+						className={classes.container}
+					>
+						<Paper className={classes.paper} elevation={3}>
+							<div>{item?.name}</div>
+							<img
+								className={classes.image}
+								src={`${item?.thumbnail?.path}.${item?.thumbnail?.extension}`}
+								alt=""
+							/>
+						</Paper>
 					</Grid>
 				))
 			))}
