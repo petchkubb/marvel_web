@@ -2,8 +2,7 @@ import React from 'react'
 
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import { QueryClient, QueryClientProvider } from 'react-query'
-
-import Home from 'pages/Home'
+import Routes from 'routes'
 
 import Header from 'components/Header'
 
@@ -32,7 +31,7 @@ function App() {
 			<ThemeProvider theme={theme}>
 				<div className="App">
 					<Header />
-					<Home />
+					<Routes />
 				</div>
 			</ThemeProvider>
 		</QueryClientProvider>

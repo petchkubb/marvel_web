@@ -49,6 +49,7 @@
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",
     "@petchkubbb/eslint-config-petchkubbb": "^0.2.14",
+    "@types/react-router-dom": "^5.1.8",
     "ts-loader": "^9.2.3"
   }
 }
