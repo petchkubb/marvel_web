@@ -4,10 +4,13 @@ import { Grid } from '@material-ui/core'
 import Paper from '@material-ui/core/Paper'
 import api from 'Api'
 import { useInfiniteQuery } from 'react-query'
+import { useHistory } from 'react-router-dom'
 
 import useStyles from 'pages/Home/styled'
 
 const Home = () => {
+	const { push } = useHistory()
+
 	const {
 		status,
 		data,
@@ -45,6 +48,11 @@ const Home = () => {
 			<p>Error!</p>
 		)
 	}
+
+	const goToDetailPage = (item:any) => {
+		push(`${item?.id}/comic`)
+	}
+
 	return (
 		<Grid
 			container
@@ -62,12 +70,13 @@ const Home = () => {
 						xs={3}
 						className={classes.container}
 					>
-						<Paper className={classes.paper} elevation={3}>
+						<Paper className={classes.paper} elevation={3} onClick={() => goToDetailPage(item)}>
 							<div>{item?.name}</div>
+							<div>{item?.description}</div>
 							<img
 								className={classes.image}
 								src={`${item?.thumbnail?.path}.${item?.thumbnail?.extension}`}
-								alt=""
+								alt={item?.name}
 							/>
 						</Paper>
 					</Grid>

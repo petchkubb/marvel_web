@@ -6,9 +6,10 @@ import {
 	Route,
 } from 'react-router-dom'
 
-import Detail from 'pages/Detail'
+import Comic from 'pages/Comic'
 import Home from 'pages/Home'
-  
+import NotFound from 'pages/NotFound'
+
 const Routes = () => {
 	return (
 		<Router>
@@ -16,8 +17,11 @@ const Routes = () => {
 				<Route exact path="/">
 					<Home />
 				</Route>
-				<Route exact path="/:id/detail">
-					<Detail />
+				<Route exact path="/:id/comic">
+					<Comic />
+				</Route>
+				<Route path="*">
+					<NotFound />
 				</Route>
 			</Switch>
 		</Router>
