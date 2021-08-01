@@ -3,9 +3,11 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
 	container: {
-		background: red[500]
+		background: red[500],
 	},
 	title: {
+		cursor: 'pointer',
+		width: '15vw',
 		color: yellow[500],
 	}
 })

@@ -4,8 +4,6 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import Routes from 'routes'
 
-import Header from 'components/Header'
-
 import './App.css'
 
 const theme = createMuiTheme({
@@ -30,7 +28,6 @@ function App() {
 		<QueryClientProvider client={queryClient}>
 			<ThemeProvider theme={theme}>
 				<div className="App">
-					<Header />
 					<Routes />
 				</div>
 			</ThemeProvider>
