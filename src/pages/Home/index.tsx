@@ -53,38 +53,35 @@ const Home = () => {
 		push(`${item?.id}/comic`)
 	}
 
+	const contentClassName = (index:number) => {
+		const newIndex = index + 1
+		let className = classes.panel1
+		if(newIndex % 5 === 0) {
+			className = classes.panel2
+		}
+		return className
+	}
+
 	return (
-		<Grid
-			container
-			spacing={3}
-			style={{
-				margin: 0,
-				width: '100%',
-			}}
-		>
+		<div className={classes.container}>
 			{data?.pages?.map((page, index) => (
-				page.data?.data?.results.map((item: any) => (
-					<Grid
+				page.data?.data?.results.map((item: any, index: number) => (
+					<div
 						key={item?.id}
-						item
-						xs={3}
-						className={classes.container}
+						className={contentClassName(index)}
+						onClick={() => goToDetailPage(item)}
 					>
-						<Paper className={classes.paper} elevation={3} onClick={() => goToDetailPage(item)}>
-							<div>{item?.name}</div>
-							<div>{item?.description}</div>
-							<img
-								className={classes.image}
-								src={`${item?.thumbnail?.path}.${item?.thumbnail?.extension}`}
-								alt={item?.name}
-							/>
-						</Paper>
-					</Grid>
+						{/* <div>{item?.name}</div> */}
+						<img
+							className={classes.image}
+							src={`${item?.thumbnail?.path}.${item?.thumbnail?.extension}`}
+							alt={item?.name}
+						/>
+					</div>
 				))
 			))}
 			<div>{isFetching && !isFetchingNextPage ? 'Fetching...' : null}</div>
-		</Grid>
-
+		</div>
 	)
 }
 
