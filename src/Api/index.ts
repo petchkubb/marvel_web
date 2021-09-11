@@ -3,7 +3,7 @@ import axios, { Method } from 'axios'
 const apiConfig = (method: Method, path: string, params?:Record<string, any>) => {
 	return axios.request({
 		method,
-		baseURL: `http://gateway.marvel.com/v1/public${path}`,
+		baseURL: `https://gateway.marvel.com/v1/public${path}`,
 		params: {
 			apikey: process.env.REACT_APP_API_KEY,
 			hash: process.env.REACT_APP_HASH,
